@@ -1,0 +1,16 @@
+{
+  "name": "amarajs",
+  "version": "1.0.0",
+  "description": "A JS Framework Developed by a College Student!",
+  "scripts": {
+    "test": "mocha",
+    "build": "tsc",
+    "dev": ""
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^18.11.9",
+    "mocha": "^10.1.0",
+    "typescript": "^4.8.4"
+  }
+}
