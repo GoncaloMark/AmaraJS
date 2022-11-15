@@ -1,4 +1,4 @@
-import {createElement} from "../lib/createElement";
+import {createElement, render} from "../lib/createElement";
 const assert = require("assert");
 
 describe('Create Element', function () {
@@ -9,3 +9,9 @@ describe('Create Element', function () {
         assert.equal(template, "Hello World")
     })
 })
+
+/* describe('Render Element', function () {
+    it('Shpuld return an HTML element', function () {
+        
+    })
+}) */
