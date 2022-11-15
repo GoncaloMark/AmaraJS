@@ -21,6 +21,8 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "html-webpack-plugin": "^5.5.0",
+    "jsdom": "20.0.2",
+    "jsdom-global": "3.0.2",
     "mocha": "^10.1.0",
     "prettier": "2.7.1",
     "ts-node": "^10.9.1",

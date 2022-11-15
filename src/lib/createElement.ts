@@ -21,5 +21,5 @@ export const render = (selector: string, component: Template) => {
   const render_text = document.createTextNode(component.template);
 
   render_element.append(render_text);
-  app_instance?.append(render_element);
-}; //tested with a webpack dev server gotta install mocha jsdom for writing the complete unit test!
+  app_instance?.appendChild(render_element);
+}; //passed test!

@@ -1,6 +1,6 @@
 # AmaraJS
 
-This is my own JavaScript Framework/Library. It will be a component based implementation for SPA Development.
+This is my own JavaScript Framework/Library. It will be a template literal component based implementation for SPA Development.
 
 I'm doing this for portfolio enrichment and also to understand the interns of the more advanced and optimised Frameworks/Libraries that there are available!
 
