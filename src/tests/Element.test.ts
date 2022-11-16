@@ -4,9 +4,9 @@ const assert = require("assert");
 describe('Create Element', function () {
     it('Should return an HTML element', function () {
         const p = createElement("p");
-        const world = "World";
+        const world = 3;
         const { template } = p`Hello ${world}`;
-        assert.equal(template, "Hello World")
+        assert.equal(template.text, `Hello ${world}`)
     })
 })
 
@@ -22,9 +22,9 @@ describe('Render Element', function () {
         const p = createElement("p");
         const world = "World";
         const template = p`Hello ${world}`;
-        render("app", template);
+        render("#app", template);
 
-        assert.equal(document.body.innerHTML, "<div id=\"app\"><p>Hello World</p></div>")
+        assert.equal(document.body.innerHTML, "<p>Hello World</p>")
     })
 
     after(function () {
