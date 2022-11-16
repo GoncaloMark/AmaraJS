@@ -1,9 +1,9 @@
-export interface EVT<T> {
+export interface EVT {
   type: string;
-  callback: (...args: T[]) => unknown;
+  callback: (...args: unknown[]) => unknown;
 }
 
-export function onClick<T>(func: (...args: T[]) => unknown): EVT<T> {
+export function onClick(func: (...args: unknown[]) => unknown): EVT {
   return {
     type: "event",
     callback: func,
