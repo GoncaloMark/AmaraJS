@@ -5,8 +5,9 @@ describe('Create Element', function () {
     it('Should return an HTML element', function () {
         const p = createElement("p");
         const world = 3;
-        const { template } = p`Hello ${world}`;
-        assert.equal(template.text, `Hello ${world}`)
+        const myp = p`Hello ${world}`;
+        const  template = myp()
+        assert.equal(template.template.text, `Hello ${world}`)
     })
 })
 
@@ -21,7 +22,8 @@ describe('Render Element', function () {
     it('WORKS!', function () {
         const p = createElement("p");
         const world = "World";
-        const template = p`Hello ${world}`;
+        const myp = p`Hello ${world}`;
+        const template = myp()
         render("#app", template);
 
         assert.equal(document.body.innerHTML, "<p>Hello World</p>")

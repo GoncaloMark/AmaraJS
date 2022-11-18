@@ -1,7 +1,6 @@
-import { h, eventListenersModule, On } from "snabbdom";
+import { h, eventListenersModule } from "snabbdom";
 import * as snabbdom from "snabbdom";
 import { VNode } from "snabbdom/build/vnode";
-import { EVT } from "./eventHandling";
 
 const patch = snabbdom.init([eventListenersModule]);
 
@@ -12,38 +11,45 @@ interface Template {
 
 interface State {
   template: string;
-  on: On;
 }
 
-const state: State = {
+const state = {
   template: "",
-  on: {},
 };
 
 const ReduceTemplate =
   (args: unknown[]) => (acc: State, currentString: string, index: number) => {
-    const CArg = args[index] as EVT;
-    if (CArg && CArg.type === "event") {
-      return {
-        ...acc,
-        on: {
-          click: CArg.callback,
-        },
-      };
-    }
     return {
       ...acc,
-      template: acc.template + currentString + (args[index] || ""),
+      template: acc.template + currentString + ((args[index] as string) || ""),
     };
   }; //Reducer prototype to clean the code below!
 
 export const createElement = (tagName: string, id?: string) => {
   //function that returns a function that returns an object!
-  return (strings: TemplateStringsArray, ...args: unknown[]): Template => {
-    const { template, on } = strings.reduce(ReduceTemplate(args), state); //specify initial value as an empty string so it starts at correct index!
-    return {
-      type: "ElementNode",
-      template: h(tagName + `#${id}`, { on }, template),
+  return (strings: TemplateStringsArray, ...args: unknown[]) => {
+    const { template } = strings.reduce(ReduceTemplate(args), state); //specify initial value as an empty string so it starts at correct index!
+    return (
+      event?: string,
+      func?: (...args: unknown[]) => unknown | unknown[]
+    ): Template => {
+      const on: snabbdom.On = {};
+      if (event && func) {
+        on[event] = func;
+      }
+      if (!id) {
+        const vnode = h(tagName, { on }, template);
+        return {
+          type: "ElementNode",
+          template: vnode,
+        };
+      } else {
+        const vnode = h(tagName + `#${id}`, { on }, template);
+        return {
+          type: "ElementNode",
+          template: vnode,
+        };
+      }
     };
   };
 }; //passed test!
